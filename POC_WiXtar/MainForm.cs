@@ -169,9 +169,9 @@ namespace POC_WiXtar
         {
             try
             {
-                using QRCoder.QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator();
-                QRCoder.QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrContent, QRCoder.QRCodeGenerator.ECCLevel.Q);
-                using QRCoder.QRCode qrCode = new QRCoder.QRCode(qrCodeData);
+                using QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrContent, QRCodeGenerator.ECCLevel.Q);
+                using QRCode qrCode = new QRCode(qrCodeData);
                 return qrCode.GetGraphic(5);
             }
             catch (Exception ex)
