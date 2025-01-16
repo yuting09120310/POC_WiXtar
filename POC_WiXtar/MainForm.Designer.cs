@@ -28,19 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
+            txt_EcrHdKey = new TextBox();
+            btn_search = new Button();
             SuspendLayout();
+            // 
+            // txt_EcrHdKey
+            // 
+            txt_EcrHdKey.Location = new Point(328, 40);
+            txt_EcrHdKey.Name = "txt_EcrHdKey";
+            txt_EcrHdKey.Size = new Size(135, 23);
+            txt_EcrHdKey.TabIndex = 0;
+            // 
+            // btn_search
+            // 
+            btn_search.Location = new Point(357, 84);
+            btn_search.Name = "btn_search";
+            btn_search.Size = new Size(75, 23);
+            btn_search.TabIndex = 1;
+            btn_search.Text = "搜尋";
+            btn_search.UseVisualStyleBackColor = true;
+            btn_search.Click += btn_search_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(364, 152);
+            ClientSize = new Size(475, 152);
+            Controls.Add(btn_search);
+            Controls.Add(txt_EcrHdKey);
             Name = "MainForm";
             Text = "MainForm";
             Load += MainForm_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private TextBox txt_EcrHdKey;
+        private Button btn_search;
     }
 }
