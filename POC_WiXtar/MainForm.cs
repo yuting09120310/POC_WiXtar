@@ -44,17 +44,18 @@ namespace POC_WiXtar
             }
 
 
-            // 標籤參數
-            string storeCode = $"店號: {dt.Rows[0][0].ToString()}";
-            string date = dt.Rows[0][1].ToString();
-            string phone = dt.Rows[0][2].ToString();
-            string itemName = dt.Rows[0][3].ToString();
-            string price = $"${dt.Rows[0][4].ToString()}";
-            string temperature = "常溫 / 無糖";
-            string qrContent = $"{{\"item\":\"{itemName}\",\"price\":\"{dt.Rows[0][4].ToString()}\",\"memo\":\"{temperature}\"}}";
+            for(int i = 0; i < dt.Rows.Count; i++)
+            {
+                string storeCode = dt.Rows[i]["ShopNo"].ToString();
+                string date = dt.Rows[i]["BDate"].ToString();
+                string phone = dt.Rows[i]["Tel1"].ToString();
+                string itemName = dt.Rows[i]["ITEM_NAME"].ToString();
+                string price = "$" + dt.Rows[i]["SALE_PRICE"].ToString();
+                string temperature = "常溫 / 無糖";
+                string qrContent = $"店號: {storeCode}\n日期: {date}\n電話: {phone}\n商品: {itemName}\n價格: {price}";
+                GenerateLabel(itemName, price, temperature, qrContent, storeCode, date, phone);
+            }
 
-            // 生成標籤
-            GenerateLabel(itemName, price, temperature, qrContent, storeCode, date, phone);
         }
 
 
@@ -155,13 +156,17 @@ namespace POC_WiXtar
             g.DrawString(phone, contentFont, brush, 10 + spacing * 2, bottomY); // 右
 
             // 顯示標籤到 PictureBox
-            PictureBox picBox = new PictureBox
-            {
-                Image = labelBitmap,
-                Dock = DockStyle.Fill,
-                SizeMode = PictureBoxSizeMode.AutoSize
-            };
-            Controls.Add(picBox);
+            //PictureBox picBox = new PictureBox
+            //{
+            //    Image = labelBitmap,
+            //    Dock = DockStyle.Fill,
+            //    SizeMode = PictureBoxSizeMode.AutoSize
+            //};
+            //Controls.Add(picBox);
+
+            // 呼叫自訂對話框
+            CustomMessageBox customBox = new CustomMessageBox(labelBitmap, "這是標籤的內容預覽");
+            customBox.ShowDialog();
         }
 
 
